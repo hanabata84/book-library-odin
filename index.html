@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="script.js" async></script>
     <title>Odin Book Library</title>
 </head>
 <body>
@@ -27,12 +27,12 @@
 <div id="modal">
     <div class="popCard">
         <button class="close">
-            <i class="fas fa-times"></i>
+            <i class="fas fa-times fa-2x"></i>
         </button>
         <h2>Book Details</h2>
         <input type="text" placeholder="title" id="title">
         <input type="text" placeholder="author" id="author">
-        <input type="text" placeholder="pages no" id="pagesNo">
+        <input type="number" placeholder="pages no" id="pagesNo" min="1" max="50000">
         <label for="readOrNot">Read
             <input type="checkbox" name="readOrNot" id="readOrNot">
         </label>
