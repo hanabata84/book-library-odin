@@ -16,7 +16,6 @@
     <h1>The Odin Library</h1>
     <div id="main-container">
         <div class="card">
-            <h2>Book</h2>
         </div>
     
         <button class="add-btn">
@@ -33,9 +32,14 @@
         <input type="text" placeholder="title" id="title">
         <input type="text" placeholder="author" id="author">
         <input type="number" placeholder="pages no" id="pagesNo" min="1" max="50000">
-        <label for="readOrNot">Read
-            <input type="checkbox" name="readOrNot" id="readOrNot">
-        </label>
+        <div class="toggle">
+            <label for="readOrNot">Read</label>
+            <label class="switch">
+                <input type="checkbox" name="readOrNot" id="readOrNot">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
         
         <button class="add-book">Add Book</button>
     </div>

@@ -6,7 +6,7 @@ const closeBtn = document.querySelector('.close');
 const addBook = document.querySelector('.add-book');
 const mainCont = document.getElementById('main-container');
 
-const book = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet');
+const book = new Book('The Hobbit', 'J.R.R. Tolkien', '295', true);
 
 function Book(title, author, pagesNo, readOrNot){
     this.title = title;
@@ -16,7 +16,7 @@ function Book(title, author, pagesNo, readOrNot){
 }
 
 Book.prototype.displayObj = function() {
-    return `Title: ${this.title}, Author: ${this.author}, No. of Pages: ${this.pagesNo}, Read: ${this.readOrNot}`;
+    return `${this.title}, Author: ${this.author}, No. of Pages: ${this.pagesNo}, ${this.readOrNot}`;
 }
 
 let myLib = [];
@@ -24,10 +24,40 @@ myLib = book.displayObj().split(', ');
 displayBooks();
 
 function displayBooks(){
-    for(const lib of myLib){
-        para.textContent += lib + '\n';
-    }
+    const titleHead = document.createElement('h2');
+    const toggle = document.createElement('div');
+    toggle.className = 'toggle';
+    titleHead.textContent = myLib[0];
+    para.textContent = myLib[1] + '\n' + myLib[2] + '\n';
+    card.appendChild(titleHead);
     card.appendChild(para);
+    card.appendChild(toggle);
+
+    const labelRead = document.createElement('label');
+    labelRead.textContent = 'Read';
+
+    toggle.appendChild(labelRead);
+
+    const labelSwitch = document.createElement('label');
+    labelSwitch.className = 'switch';
+
+    toggle.appendChild(labelSwitch);
+
+    const checkBox = document.createElement('input')
+    checkBox.setAttribute('type', 'checkbox');
+
+    labelSwitch.appendChild(checkBox);
+
+    const slider = document.createElement('span');
+    slider.className = 'slider';
+
+    labelSwitch.appendChild(slider);
+
+    if(myLib[3] === 'true'){
+        checkBox.checked = true;
+    }else{
+        checkBox.checked = false;
+    }
 }
 
 function addBookToLibrary() {
@@ -43,10 +73,12 @@ function addBookToLibrary() {
 
 function openModal(){
     let inputs = document.getElementsByTagName('input');
+    let modalCheck = document.getElementById('readOrNot');
+    
     for(let i = 0; i < inputs.length; i++){
         inputs[i].value = '';
-        if(inputs[i].type == 'checkbox'){
-            inputs[i].checked = false;
+        if(inputs[i].type == 'checkbox' && modalCheck.name === 'readOrNot'){
+            modalCheck.checked = false;
         }
     }
     modal.style.display = 'block';
@@ -58,14 +90,49 @@ function closeModal(){
 
 function newElements(){
     const newCard = document.createElement('div');
+    const newHead = document.createElement('h2');
     const newPara = document.createElement('p');
     const delBtn = document.createElement('button')
     newCard.className = 'card';
     mainCont.appendChild(newCard);
-    for(const lib of myLib){
-        newPara.textContent += lib + '\n';
-    }
+    newHead.textContent = myLib[0];
+    
+    newPara.textContent = myLib[1] + '\n' + myLib[2] + '\n';
+    
+    newCard.appendChild(newHead);
     newCard.appendChild(newPara);
+
+    const toggle = document.createElement('div');
+    toggle.className = 'toggle';
+
+    newCard.appendChild(toggle);
+
+    const labelRead = document.createElement('label');
+    labelRead.textContent = 'Read';
+
+    toggle.appendChild(labelRead);
+
+    const labelSwitch = document.createElement('label');
+    labelSwitch.className = 'switch';
+
+    toggle.appendChild(labelSwitch);
+
+    const checkBox = document.createElement('input')
+    checkBox.setAttribute('type', 'checkbox');
+
+    labelSwitch.appendChild(checkBox);
+
+    const slider = document.createElement('span');
+    slider.className = 'slider';
+
+    labelSwitch.appendChild(slider);
+
+    if(myLib[3] === 'true'){
+        checkBox.checked = true;
+    }else{
+        checkBox.checked = false;
+    }
+    
     delBtn.innerHTML = 'Delete Book';
     delBtn.className = 'delete-book';
     newCard.appendChild(delBtn);
